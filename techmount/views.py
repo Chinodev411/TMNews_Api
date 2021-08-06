@@ -5,7 +5,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import News, Comment
 from .serializers import NewsSerializer, CommentSerializer
-from rest_framework import permissions
+# from rest_framework import permissions
 # from techmount.permissions import IsOwnerOrReadOnly
 
 
