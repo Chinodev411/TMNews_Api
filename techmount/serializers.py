@@ -19,9 +19,8 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
 
     news_author = serializers.SlugRelatedField(queryset=News.objects.all(), slug_field='author', source='news')
 
-    owner = serializers.ReadOnlyField(souce='owner.username')
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta: 
         model = Comment
         fields = ('news', 'news_id', 'title', 'body', 'timestamp', 'news_author', 'owner')
-        
