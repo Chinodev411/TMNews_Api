@@ -5,14 +5,14 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import News, Comment
 from .serializers import NewsSerializer, CommentSerializer
-# from rest_framework import permissions
-# from techmount.permissions import IsOwnerOrReadOnly
+from rest_framework import permissions
+from techmount.permissions import IsOwnerOrReadOnly
 
 
 class NewsList(generics.ListCreateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -20,12 +20,12 @@ class NewsList(generics.ListCreateAPIView):
 class NewsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
-    # permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
 class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -33,6 +33,6 @@ class CommentList(generics.ListCreateAPIView):
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    # permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
 
